@@ -1,0 +1,79 @@
+body {
+    background-color: #1a1c1d;  /* wet asphalt */
+    color: #e0e5ec;              /* misty pale gray */
+    font-family: monospace;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #terminal, #cli, #cli-output {
+    max-width: 700px;
+    margin: 2rem auto;
+    text-align: left;
+  }
+  
+  h1 {
+    color: #778899; /* soft gray-blue */
+  }
+  
+  a {
+    color: #95d1ff; /* icy blue links */
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  .prompt {
+    color: #4a90e2; /* twilight blue */
+  }
+  
+  #cli {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  #command {
+    background: transparent;
+    border: none;
+    color: #4a90e2;
+    font-family: monospace;
+    font-size: 1rem;
+    width: 100%;
+    outline: none;
+  }
+  
+  #cli-output {
+    margin-top: 1rem;
+    white-space: pre-wrap;
+  }
+
+  
+  @keyframes typewriter {
+    from { width: 0; }
+    to { width: 60%; }
+  }
+  
+  @keyframes blinkCursor {
+    0% { border-right-color: rgba(255,255,255,0.75); }
+    49% { border-right-color: rgba(255,255,255,0.75); }
+    50% { border-right-color: transparent; }
+    100% { border-right-color: transparent; }
+  }
+  
+  h1 {
+    color: #778899;
+    overflow: hidden;
+    border-right: 2px solid #778899;
+    white-space: nowrap;
+    width: 0;
+    animation:
+      typewriter 1.5s steps(30, end) forwards,
+      blinkCursor 2s step-end infinite;
+  }
+
+ 
