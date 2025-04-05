@@ -65,15 +65,14 @@ body {
   
   /* Optional: Slight padding and border-radius for readability */
   pre {
-    background-color: #212324;
-    padding: 1rem;
-    border-radius: 6px;
-    overflow-x: auto;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    overflow: visible;
     white-space: pre-wrap;
     font-family: monospace;
-    color: #e0e5ec;
+    color: inherit;
   }
-  
   /* Animation tweaks */
   @keyframes typewriter {
     from { width: 0; }
