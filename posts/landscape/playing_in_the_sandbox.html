@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>posts/landscape/sandbox_escape_trend/</title>
+  <link rel="stylesheet" href="/blogno1r/style.css">
+</head>
+<body>
+  <div id="terminal">
+    <h1>posts/landscape/sandbox_escape_trend/</h1>
+
+    <p>> # Playing in the Sandbox</p>
+    <p>> a brief general overview of recent trends in sandbox escapes.</p>
+
+    <p>> Let me set the scene. In recent weeks, security researchers have discovered and discussed several notable zero-day exploits. Three vulnerabilities particularly stand out, all sharing a common theme: <strong>sandbox escape</strong>.</p>
+
+    <p>> This presents a perfect opportunity to explore browser sandboxes at a high level. What are they? Why do they exist? How are they exploited? Let's dive in.</p>
+
+    <p>> But first, let’s look at the specific vulnerabilities.</p>
+
+    <p>> The first was <strong>CVE-2025-24201</strong>, disclosed on March 11th, 2025. This vulnerability exposed an out-of-bounds write issue that enabled attackers to escape the WebKit sandbox in Safari. It affected older iOS, iPadOS, and macOS devices running system versions or Safari builds older than 18.3.1. While now patched, Apple noted:</p>
+
+    <pre>
+"Apple is aware of a report that this issue may have been exploited in an extremely sophisticated attack against specific targeted individuals on versions of iOS before iOS 17.2."
+    </pre>
+
+    <p>> Next came <strong>CVE-2025-2783</strong>, disclosed on March 25th by Kaspersky researchers Igor Kuznetsov (@oct0xor) and Boris Larin (@2igosha). This vulnerability allowed attackers to bypass Chrome's sandbox and chain it with exploits for remote code execution. The researchers uncovered an operation dubbed <strong>ForumTroll</strong>, in which targeted phishing attacks were used to exploit this Chrome vulnerability against Russian media outlets, government organizations, and academic institutions. This vulnerability has since been patched.</p>
+
+    <p>> Finally, in the wake of the Chrome sandbox escape (<strong>CVE-2025-2783</strong>), Firefox developers found a similar issue within their IPC system. They discovered that a compromised child process could trick the parent process into returning an unintentionally powerful handle—enabling a sandbox escape.</p>
+
+    <p>> <em>Interesting.</em></p>
+
+    <p>> This raises some important questions.</p>
+    <p>> First: <em>What is a sandbox?</em></p>
+
+    <p>> From the way I understand it, a sandbox is a place where a parent puts their kid down to play while the grown-ups talk about taxes, infidelity, or whatever adults talk about. The analogy tracks.</p>
+
+    <p>> In computing terms, a sandbox is a software-defined boundary that isolates processes—usually within a browser—from the rest of your system.</p>
+
+    <p>> Before sandboxing was widely adopted, <em>drive-by downloads</em> were much more common. These attacks could silently install malware onto a user’s machine just by visiting a malicious website.</p>
+
+    <p>> To reduce the damage potential of these kinds of exploits, modern browsers use a sandboxing model: a <strong>parent process</strong> (sometimes called a broker) handles communication with the operating system, while <strong>child processes</strong>—which render web pages and run scripts—are locked into a tightly controlled environment.</p>
+
+    <p>> This setup ensures that even if a malicious site manages to compromise a child process, it can't immediately start doing any <strong>silly evil things</strong> to your machine—like reading your files, installing malware, or poking the OS directly. It has to <em>escape the sandbox</em> first. And lately, attackers are getting better at doing just that.</p>
+
+    <p>> So why does escaping it constitute a high-risk vulnerability?</p>
+
+    <p>> Because once attackers escape the sandbox, they gain a direct line to your operating system. Usually, sandbox escapes are <strong>chained</strong> to another exploit—like a one-two combo in boxing. If an attacker can escape a sandbox, that’s already half the job done.</p>
+
+    <p>> What kinds of exploits are typically chained with a sandbox escape?</p>
+
+    <p>> Luckily, the Kaspersky researchers provided some detection codes:</p>
+
+    <ul>
+      <li>> Exploit.Win32.Generic</li>
+      <li>> Trojan.Win64.Agent</li>
+      <li>> Trojan.Win64.Convagent.gen</li>
+      <li>> PDM:Exploit.Win32.Generic</li>
+      <li>> PDM:Trojan.Win32.Generic</li>
+      <li>> UDS:DangerousObject.Multi.Generic</li>
+    </ul>
+
+    <p>> These detections suggest the kinds of payloads being delivered in the wild. I might pull apart one of them in a follow-up post to get a better look at how they behave.</p>
+
+    <p>> <strong>thoughts.txt</strong></p>
+
+    <p>> Overall, this recent cluster of zero-day sandbox escapes is notable—and worth watching closely. Kaspersky has pointed out that Operation ForumTroll appears to be the work of an APT, aimed at specific targets in Russia.</p>
+
+    <p>> Keeping an eye on this as Kaspersky releases more details might provide some spicy tea around the global threat landscape.</p>
+
+    <p>> <strong>sources/</strong></p>
+
+    <ul>
+      <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-24201">CVE-2025-24201 – NVD</a></li>
+      <li><a href="https://support.apple.com/en-us/122281">Apple Security Report</a></li>
+      <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-2783">CVE-2025-2783 – NVD</a></li>
+      <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-2857">CVE-2025-2857 – NVD</a></li>
+      <li><a href="https://securelist.com/operation-forumtroll/115989/">Kaspersky: ForumTroll Operation</a></li>
+      <li><a href="https://chromereleases.googleblog.com/2025/03/stable-channel-update-for-desktop_25.html">Chrome Release Blog</a></li>
+      <li><a href="https://www.youtube.com/watch?v=StQ_6juJlZY">LiveOverflow Sandbox Exploit Breakdown</a></li>
+    </ul>
+
+    <p>> Return to <a href="/blogno1r/landscape.html">landscape/</a></p>
+  </div>
+</body>
+</html>
